@@ -42,7 +42,11 @@
                                         <input type="number" name="quantidade" id="qtde-<?php echo $produto['id'];?>" class="form-control w-50" value="1">
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-success" type="submit">Adicionar ao carrinho</button>
+                                        <?php if(isset($_COOKIE['token_sessao'])) {?>
+                                            <button class="btn btn-success" type="submit">Adicionar ao carrinho</button>
+                                        <?php } else{?>
+                                            <a href="cadastro.php" class="btn btn-info">Cadastre-se</a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

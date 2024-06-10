@@ -22,14 +22,16 @@
         echo "Reconheci que há um token salvo nos cookies";
         $token_sessao = $_COOKIE['token_sessao'];
 
-        $sql = "SELECT id, cliente_id FROM sessoes WHERE token = '$token_sessao'";
+        $sql = "SELECT sessoes.id, sessoes.cliente_id, clientes.nome FROM sessoes INNER JOIN clientes ON sessoes.cliente_id = clientes.id WHERE token = '$token_sessao'";
         $token_banco = $conn->prepare($sql);
         $token_banco->execute();
         $token_banco = $token_banco->fetch(PDO::FETCH_ASSOC);
 
         if($token_banco) {
           $_SESSION['user_id'] = $token_banco['cliente_id'];
+          $_SESSION['user_name'] = $token_banco['nome'];
           echo "EU RECONHEÇO VOCÊ! É a sessão de id = " .$token_banco['id'];
+          echo " e o seu nome é: " .$token_banco['nome'];
         }
       }
     ?>
