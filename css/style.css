@@ -1,3 +1,7 @@
 .body-general {
     background-color: #ec2c7c3d;
 }
+
+.card-img-height-set {
+    max-height: 180px;
+}

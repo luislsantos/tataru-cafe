@@ -11,7 +11,9 @@
 
 <body class="body-general">
     <!--NAVBAR-->
-    <?php include 'navbar.php';?>
+    <?php 
+    session_start();
+    include 'navbar.php';?>
         
       <div id="carousel-doces" class="carousel slide mx-auto pt-lg-5 pt-md-3 pt-sm-2 w-75">
         <div class="carousel-indicators">

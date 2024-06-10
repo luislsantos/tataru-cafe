@@ -18,7 +18,7 @@
         Faça seu cadastro conosco e já começe a enviar seus pedidos
     </h1>
 
-    <form class="col-lg-6 col-sm-12 p-3 mx-auto">
+    <form action="login.php" method="POST" class="col-lg-6 col-sm-12 p-3 mx-auto">
         <div class="mb-3">
             <label for="nome-completo" class="form-label">Nome completo</label>
             <input type="text" name="nome" class="form-control" id="nome-completo">
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Grupo do Endereço -->
-         
+
         <div class="container-fluid p-0">
             <label for="rua" class="form-label">Endereço</label>
             <div class="mb-3">
@@ -81,7 +81,7 @@
             <input type="password" name="password" id="password" placeholder="Confirme sua senha" class="form-control">
         </div>
         <div class="d-grid gap-3 mt-4">
-            <button class="btn btn-success btn-lg">Cadastrar</button>
+            <button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
         </div>
     </form>
 
