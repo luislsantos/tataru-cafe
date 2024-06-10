@@ -12,8 +12,27 @@
 <body class="body-general">
     <!--NAVBAR-->
     <?php 
-    session_start();
-    include 'navbar.php';?>
+      session_start();
+      include 'navbar.php';
+      include_once 'conexao.php';
+
+      #$_SESSION['user_id'] = -1;
+      
+      if(isset($_COOKIE['token_sessao']))  {
+        echo "Reconheci que há um token salvo nos cookies";
+        $token_sessao = $_COOKIE['token_sessao'];
+
+        $sql = "SELECT id, cliente_id FROM sessoes WHERE token = '$token_sessao'";
+        $token_banco = $conn->prepare($sql);
+        $token_banco->execute();
+        $token_banco = $token_banco->fetch(PDO::FETCH_ASSOC);
+
+        if($token_banco) {
+          $_SESSION['user_id'] = $token_banco['cliente_id'];
+          echo "EU RECONHEÇO VOCÊ! É a sessão de id = " .$token_banco['id'];
+        }
+      }
+    ?>
         
       <div id="carousel-doces" class="carousel slide mx-auto pt-lg-5 pt-md-3 pt-sm-2 w-75">
         <div class="carousel-indicators">
@@ -53,6 +72,13 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+      <?php
+      echo $_SESSION['user_id']; 
+      if($_SESSION['user_id'] >= 0) {
+        echo "EU RECONHEÇO VOCÊ!";
+      }
+      ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+  <?php if(!isset($_SESSION)) session_start()?>
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand col-2" href="index.php">
@@ -34,7 +35,13 @@
                 </ul>
               </li>
               <li class="nav-item col-2">
-                <a class="nav-link active" aria-current="page" href="login.php">Login</a>
+                <?php 
+                if(isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) { ?>
+                  <a class="nav-link active" aria-current="page" href="logoff.php">Logoff</a>
+                <?php } else { ?>
+                  <a class="nav-link active" aria-current="page" href="login.php">Login</a>
+                <?php }
+                ?>
             </li>
             <li class="nav-item col-2">
                 <a class="nav-link active" aria-current="page" href="carrinho.php">

@@ -11,23 +11,61 @@
 
 <body class="body-general">
     <!--NAVBAR-->
-    <?php include 'navbar.php'; ?>
+    <?php 
+        session_start();
+        include 'navbar.php';
+        include_once 'conexao.php';
+
+        #Código de Cadastro do cliente
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+
+            $sql = "SELECT id, email, senha FROM clientes WHERE email = '$email'";
+            $cliente_login = $conn->prepare($sql);
+            $cliente_login->execute();
+            $cliente_login = $cliente_login->fetch(PDO::FETCH_ASSOC);
+
+            #Verifica se o usuário existe
+            if(!empty($cliente_login)) {
+            #Verifica se a senha confere
+                if(password_verify($senha,$cliente_login['senha'])){
+                    #Criar um token a partir de um HEX aleatório
+                    $token_sessao = bin2hex(random_bytes(32));
+
+                    #Inserir o token no Banco
+                    $sql = "INSERT INTO sessoes (id, cliente_id, token, data_criacao) VALUES (NULL, '$cliente_login[id]','$token_sessao',NOW())";
+                    $registrar_token = $conn->prepare($sql);
+                    $registrar_token->execute();
+
+                    #Armazenar o token de sessão como um cookie
+                    setcookie('token_sessao',$token_sessao, time() + 3600, 'deisy-trufas');
+                    $_SESSION['user_id'] = $cliente_login['id'];
+                    echo 'Usuário logado';
+                } else {
+                    echo 'Senha incorreta';
+                }
+            } else {
+                echo "Usuário não encontrado";
+            }
+        }
+    ?>
 
     <h1 class="p-3 col-9 mx-auto text-center">
         Faça seu login para realizar seus pedidos!
     </h1>
-    <form class="col-6 p-3 mx-auto">
+    <form class="col-6 p-3 mx-auto" method="POST">
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email-input" placeholder="seuemail@dominio.com.br">
+            <input type="email" class="form-control" id="email-input" name="email" placeholder="seuemail@dominio.com.br">
             <label for="email-input">E-mail</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password-input" placeholder="Senha">
+            <input type="password" class="form-control" id="password-input" name="senha" placeholder="Senha">
             <label for="password">Senha</label>
         </div>
         <div class="d-grid gap-3">
             <button class="btn btn-link">Esqueci minha senha</button>
-            <button class="btn btn-success btn-lg">Entrar</button>
+            <button class="btn btn-success btn-lg" type="submit">Entrar</button>
         </div>
     </form>
 

@@ -12,12 +12,14 @@
 
 
     <?php
+    session_start();
     include 'navbar.php';
     include_once 'conexao.php';
 
-    $USER_ID = 1; #APENAS PARA TESTE. REMOVER DEPOIS
+    #$_SESSION['user_id'] = 1; #APENAS PARA TESTE. REMOVER DEPOIS
 
-#TRANSFERIR ESSA LÓGICA PARA UM NOVO SCRIPT adicionar_ao_carrinho.php. Depois de adicionar ao carrinho subirá um 
+
+    #TODO: TRANSFERIR ESSA LÓGICA PARA UM NOVO SCRIPT adicionar_ao_carrinho.php. Depois de adicionar ao carrinho, um modal confirmará a inserção e perguntará se a pessoa deseja ir para o carrinho ou continuar a comprar
 
     #Se o usuário adicionou um produto novo ao carrinho
 
@@ -27,12 +29,13 @@
         $preco_unitario = $_POST['preco_unitario'];
 
         #Verificar se o produto já está no carrinho
-        $sql = "SELECT id, produto_id, quantidade FROM produtos_carrinho WHERE cliente_id = $USER_ID AND produto_id = $prod_id";
+        $sql = "SELECT id, produto_id, quantidade FROM produtos_carrinho WHERE cliente_id = $_SESSION[user_id] AND produto_id = $prod_id";
         $produto_carrinhoPDO = $conn->prepare($sql);
         $produto_carrinhoPDO->execute();
         $produto_carrinho = $produto_carrinhoPDO->fetch();
         echo "EXECUTEI";
 
+        #Se estiver, aumentar a quantidade
         if(!empty($produto_carrinho)) {
             echo " ACHEI!";
             $id = $produto_carrinho['id'];
@@ -43,46 +46,22 @@
             $produto_carrinhoPDO = $conn->prepare($sql);
             $produto_carrinhoPDO->execute();
 
+        #Se não estiver, acrescentar
         } else {
             echo "NÃO ACHEI";
             $valor_total = $qtde * $preco_unitario;
-            $sql = "INSERT INTO `produtos_carrinho` (`id`, `cliente_id`, `produto_id`, `quantidade`, `valor_total`) VALUES (NULL, $USER_ID, $prod_id, $qtde, $valor_total)";
+            $sql = "INSERT INTO `produtos_carrinho` (`id`, `cliente_id`, `produto_id`, `quantidade`, `valor_total`) VALUES (NULL, $_SESSION[user_id], $prod_id, $qtde, $valor_total)";
             $produto_carrinhoPDO = $conn->prepare($sql);
             $produto_carrinhoPDO->execute();
         }
     }
 
     #Puxa a versão atualizada do carrinho do usuário do Banco de Dados
-    $sql = "SELECT pc.id, pc.produto_id, prod.imagem, prod.nome, prod.preco_unitario, pc.quantidade, pc.valor_total FROM produtos_carrinho pc INNER JOIN produtos prod ON pc.produto_id = prod.id WHERE pc.cliente_id=$USER_ID AND prod.excluido = 0";
+    $sql = "SELECT pc.id, pc.produto_id, prod.imagem, prod.nome, prod.preco_unitario, pc.quantidade, pc.valor_total FROM produtos_carrinho pc INNER JOIN produtos prod ON pc.produto_id = prod.id WHERE pc.cliente_id=$_SESSION[user_id] AND prod.excluido = 0";
     $carrinhoPDO = $conn->prepare($sql);
     $carrinhoPDO->execute();
     $carrinho = $carrinhoPDO->fetchAll();
 
-        /*if(isset($_SESSION['carrinho'][$prod_id])) {
-            $_SESSION['carrinho'][$prod_id]['qtde'] += $qtde;
-        } else {
-            $sql = "SELECT * from produtos WHERE id=$prod_id";
-            $produto = $conn->prepare($sql);
-            $produto->execute();
-
-            $produto_resultado = $produto->fetch();
-    
-            $valorUnitario = $produto_resultado['preco_unitario'];
-            $valorTotal = $valorUnitario*$qtde;
-            $produto_carrinho = ['id' => $produto_resultado['id'], 
-                'nome' => $produto_resultado['nome'],
-                'preco_unitario' => $produto_resultado['preco_unitario'],
-                'imagem' => $produto_resultado['imagem'],
-                'qtde' => $qtde,
-                'valor_total'=>$valorTotal];
-            $_SESSION['carrinho'][$produto_carrinho['id']] = $produto_carrinho;
-            foreach ($_SESSION['carrinho'] as $item) {
-                echo "ID: " .$item->id;
-                echo "\nNome: " .$item->nome;
-
-            }
-        }
-    }*/
     ?>
     <table class="table table-striped mb-1">
         <thead class="table-primary">
