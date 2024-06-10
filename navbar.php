@@ -29,7 +29,7 @@
                 </a>
                 <ul class="dropdown-menu col-2">
                   <li><a class="dropdown-item" href="lista-produtos.php">Novo pedido</a></li>
-                  <li><a class="dropdown-item" href="#">Ver pedidos</a></li>
+                  <li><a class="dropdown-item" href="lista-pedidos.php">Ver pedidos</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Editar Cadastro</a></li>
                 </ul>

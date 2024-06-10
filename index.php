@@ -16,7 +16,7 @@
       include 'navbar.php';
       include_once 'conexao.php';
 
-      #$_SESSION['user_id'] = -1;
+      $_SESSION['user_id'] = -1;
       
       if(isset($_COOKIE['token_sessao']))  {
         echo "Reconheci que há um token salvo nos cookies";

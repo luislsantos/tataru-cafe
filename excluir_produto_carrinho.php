@@ -10,9 +10,9 @@
 </head>
 <body>
     <?php 
+        session_start();
         include 'navbar.php';
         include_once 'conexao.php';
-        session_start();
 
         $delete_cod = $_GET['cod'];
 
@@ -22,5 +22,6 @@
     ?>
     <h5>Produto Excluído</h5>
     <p>O produto foi excluído do seu carrinho com sucesso.</p>
+    
 </body>
 </html>
