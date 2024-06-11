@@ -35,6 +35,8 @@
         }
     }
     ?>
+    <div class="hero-divider"></div>
+
     <!-- Primeiro Hero, apenas com a chamada principal e um botão -->
     <div class="px-4 py-5 my-5 text-center">
         <img src="https://placehold.co/57x72" alt="">
@@ -56,9 +58,9 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Aenean tempus aliquam elementum. Donec fringilla, nibh ac accumsan pulvinar, sapien orci luctus eros, eu tempus augue mauris at lectus. Donec tempor vitae tellus non varius. Proin commodo neque eget urna tristique, ut porta magna elementum. Aliquam erat volutpat. Nulla dapibus elit feugiat ex sodales, at hendrerit lacus scelerisque. Nam varius dictum finibus. Nulla sem eros, dignissim vitae feugiat eu, pellentesque vel tortor. In ullamcorper augue in ultrices varius. Cras interdum ex vel leo ultricies tempor.</p>
         </div>
-        <div class="overflow-hidden">
+        <div class="overflow-hidden" style="max-height: 30vh;">
             <div class="container px-5">
-                <img src="https://placehold.co/500x700" alt="">
+                <img src="https://placehold.co/500x700" class="img-fluid border rounded-3 shadow-lg mb-4" alt="">
             </div>
         </div>
     </div>
