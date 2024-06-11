@@ -16,7 +16,28 @@
     session_start();
     include 'navbar.php'; 
     include_once 'conexao.php';
+    
+    #Declarar uma função para formatar o CPF e número de telefone, deixando com os pontos e traços
+
+    function formataStringAdc($tipo, $string) {
+            if($tipo == 'cpf') {
+                $parte1 = substr($string,0,3);
+                $parte2 = substr($string,3,3);
+                $parte3 = substr($string,6,3);
+                $parte4 = substr($string,9,2);
+
+                return $parte1. "." .$parte2. "." .$parte3."-".$parte4;
+            }
+            if($tipo == 'tel') {
+                $parte1 = substr($string,0,2);
+                $parte2 = substr($string,2,5);
+                $parte3 = substr($string,7,4);
+
+                return "(" .$parte1 .")" .$parte2 ."-" .$parte3;
+            }
+    }
     ?>
+
 
     <h1 class="p-3 col-9 mx-auto text-center">
         <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
@@ -26,10 +47,10 @@
             $cliente_banco->execute();
             foreach($cliente_banco as $dado) {
                 $nome = $dado['nome'];
-                $cpf = $dado['cpf'];
+                $cpf = formataStringAdc('cpf',$dado['cpf']);
                 $data_nascimento = $dado['data_nascimento'];
                 $email = $dado['email'];
-                $telefone = $dado['telefone'];
+                $telefone = formataStringAdc('tel',$dado['telefone']);
                 $endereco_logradouro = $dado['endereco_logradouro'];
                 $endereco_numero = $dado['endereco_numero'];
                 $endereco_bairro = $dado['endereco_bairro'];
@@ -58,7 +79,7 @@
         <div class="row">
             <div class="mb-3 col-lg-6 col-md-12">
                 <label for="cpf" class="form-label">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="form-control" value="<?php if($edit_id > 0) echo $cpf;?>">
+                <input oninput="" type="text" name="cpf" id="cpf" class="form-control" value="<?php if($edit_id > 0) echo $cpf;?>">
             </div>
             <div class="mb-3 col-lg-6 col-md-12">
                 <label for="data-nascimento" class="form-label">Data de Nascimento</label>
@@ -123,6 +144,7 @@
         </div>
     </form>
 
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

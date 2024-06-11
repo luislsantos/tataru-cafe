@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="body-general">
     <?php 
     session_start();
     include 'navbar.php';
@@ -23,66 +23,66 @@
         $lista_pedidos = $lista_pedidos->fetchAll();
         ?>
 
-        <table class="table table-striped mb-1">
-            <thead class="table-primary">
-                <tr>
-                    <th>Número do Pedido</th>
-                    <th>Data</th>
-                    <th>Total(R$)</th>
-                    <th>Opções</th>
-                </tr>
-            </thead>
-            <tbody id="lista-produtos">
-            <?php
-            foreach($lista_pedidos as $pedido) {?>
-                <tr>
-                    <td><?php echo $pedido['id'] ?></td>
-                    <td><?php echo date_format(date_create($pedido['data']),"d/m/Y")?></td>
-                    <td>R$ <?php echo number_format($pedido['total'],2,",") ?></td>
-                    <td>
-                        <p class="d-inline-flex gap-1">
-                        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#info-ped-<?php echo $pedido['id']?>" aria-expanded="false" aria-controls="info-ped-<?php echo $pedido['id']?>">
-                            Detalhamento
-                        </button>
-                        </p>
-                        </td>
-                        </tr>
-                        <!-- Detalhamento do pedido -->
-                        <tr class="collapse" id="info-ped-<?php echo $pedido['id']?>">
-                            <td colspan="3">
-                            <?php    
-                            #Pegar os itens desse pedido
-                            $sql = "SELECT prod.nome, ped_prod.preco_unitario, ped_prod.quantidade FROM pedidos_produtos ped_prod INNER JOIN produtos prod ON ped_prod.produto_id = prod.id WHERE ped_prod.pedido_id = $pedido[id]";
-                            $produtos_pedido = $conn->prepare($sql);
-                            $produtos_pedido->execute();
-                            $produtos_pedido = $produtos_pedido->fetchAll();
-                            ?>
-                            <!--- Tabela que vai contar os detalhes do pedido--->
-                                <table class="table ms-5">
-                                    <thead>
-                                        <th>Produto</th>
-                                        <th>Preço Unitário</th>
-                                        <th>Quantidade</th>
-                                        <th>Total</th>
-                                    </thead>
-                                    <tbody>
-                                        <!--- Vai iterar por cada um dos itens do pedido e colocar cada um deles nas table rows <tr> da tabela --->
-                                        <?php foreach($produtos_pedido as $produto){ ?>
-                                            <tr>
-                                                <td style="width: 383.672px;"><?php echo $produto['nome']?></td>
-                                                <td>R$ <?php echo number_format($produto['preco_unitario'],2,",")?></td>
-                                                <td><?php echo $produto['quantidade']?></td>
-                                                <td>R$ <?php echo number_format(($produto['preco_unitario']*$produto['quantidade']),2,",")?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                        <!-- Detalhamento do Pedido -->
-            <?php } ?>
-            </tbody>
-        </table>
+        <div class="container text-center w-75 mt-4 px-4" >
+
+            <!-- Cabeçalho da lista de pedidos será organizado pelo grid do Bootstrap, para melhor organizar-->
+                    <div class="row pb-3 row-cols-3 border border-3 rounded align-items-center text-bg-dark" >
+                        <div class="col"><strong>Número do Pedido</strong></div>
+                        <div class="col"><strong>Data</strong></div>
+                        <div class="col pe-5"><strong>Total(R$)</strong></div>
+                    </div>
+    
+            <!-- Os pedidos ficarão num Accordion, componente do Bootstrap, para melhor organização -->
+            <div class="accordion mt-2" id="accordion-pedidos">
+                <?php
+                    foreach($lista_pedidos as $pedido) {?>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <!-- O data-bs-target e o aria-controls desse botão variam de acordo com o id do pedido. Assim, cada botão apenas abre os detalhes do seu próprio pedido-->
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $pedido['id']?>" aria-expanded="false" aria-controls="collapse-<?php echo $pedido['id']?>">
+                                <!-- Dentro do cabeçalho do accordion, serão organizados os itens com o grid do Bootstrap pra espaçar melhor os itens -->
+                                <div class="container text-center">
+                                    <div class="row row-col-3">
+                                            <div class="col pe-5">Pedido nº<?php echo $pedido['id'] ?></div>
+                                            <div class="col"><?php echo date_format(date_create($pedido['data']),"d/m/Y")?></div>
+                                            <div class="col">R$ <?php echo number_format($pedido['total'],2,",") ?></div>
+                                    </div>
+
+                                </div>    
+                            </button>
+                        </h2>
+                        <!-- Aqui fica toda a parte "escondida" do accordion. A primeira div demarca o que vai ser escondido (hidden), e a segunda vai conter o conteúdo em sí -->
+                        <div id="collapse-<?php echo $pedido['id']?>" class="accordion-collapse collapse" data-bs-parent="#accordion-pedidos">
+                            <div class="accordion-body text-bg-secondary">
+
+                                    <?php    
+                                        #Pegar os itens desse pedido
+                                        $sql = "SELECT prod.nome, ped_prod.preco_unitario, ped_prod.quantidade FROM pedidos_produtos ped_prod INNER JOIN produtos prod ON ped_prod.produto_id = prod.id WHERE ped_prod.pedido_id = $pedido[id]";
+                                        $produtos_pedido = $conn->prepare($sql);
+                                         $produtos_pedido->execute();
+                                        $produtos_pedido = $produtos_pedido->fetchAll();
+                                    
+                                        #Vai iterar por cada um dos itens do pedido e colocar cada um deles em uma coluna --->
+                                        foreach($produtos_pedido as $produto){ ?>
+                                            <div class="container text-center">
+                                                <div class="row row-col-4 mb-3">
+                                                    <div class="col"><?php echo $produto['nome']?></div>
+                                                    <div class="col">R$ <?php echo number_format($produto['preco_unitario'],2,",")?> a unidade</div>
+                                                    <div class="col"><?php echo $produto['quantidade']?> unidades</div>
+                                                    <div class="col">R$ <?php echo number_format(($produto['preco_unitario']*$produto['quantidade']),2,",")?></div>
+                                                </div>
+                                            </div>
+                                        <?php 
+                                        }
+                                     ?>
+
+                             </div>
+                        </div>
+                    </div>
+                <?php } 
+                ?>
+            </div>
+        </div>
 
     <?php } else {
         #Usuário não está logado

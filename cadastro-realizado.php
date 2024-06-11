@@ -12,14 +12,19 @@
     include 'navbar.php';
     include_once 'conexao.php';
 
+    #Definir funções para remover hífens, pontos e parênteses do CPF e numero de telefone
+    function formataStringRem($string) {
+            return str_replace([".","-","(",")"],"",$string);
+        }
+
     #Código de Cadastro do cliente
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['id'];
         $nome = $_POST['nome'];
-        $cpf = $_POST['cpf'];
+        $cpf = formataStringRem($_POST['cpf']);
         $data_nascimento = $_POST['data-nascimento'];
         $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
+        $telefone = formataStringRem($_POST['telefone']);
         $endereco_logradouro = $_POST['endereco-logradouro'];
         $endereco_numero = $_POST['endereco-numero'];
         $endereco_bairro = $_POST['endereco-bairro'];

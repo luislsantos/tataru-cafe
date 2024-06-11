@@ -96,11 +96,11 @@
     </table>
     <h2 class="row mx-auto">Subtotal: R$ <?php echo number_format($sub_total,2,",")?></h2>
     <div class="d-flex justify-content-center m-5">
-        <a class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#modalFecharPedido">Fechar o pedido</a>
         <a class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#modalLimparCarrinho">Limpar o carrinho</a> 
+        <a class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#modalFecharPedido">Fechar o pedido</a>
     </div>
 
-    <!-- Modal pra confirmar se quer esvaziar o carrinho, conforme Bootstrap-->
+    <!-- Modal do Bootstrap pra confirmar se quer esvaziar o carrinho, conforme Bootstrap-->
     <div class="modal fade" id="modalLimparCarrinho" tabindex="-1" aria-labelledby="modalLimparCarrinhoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <!-- Modal pra confirmar se quer fechar o pedido-->
+    <!-- Modal do Bootstrap pra confirmar se quer fechar o pedido-->
     <div class="modal fade" id="modalFecharPedido" tabindex="-1" aria-labelledby="modalFecharPedidoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

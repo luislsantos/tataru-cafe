@@ -16,9 +16,10 @@
         include 'navbar.php';
         include_once 'conexao.php';
     ?>
-    <h1 class="p-3 col-9 mx-auto text-center">
-        Faça seu login para realizar seus pedidos!
-    </h1>
+    <div class="px-4 py-5 mt-5 mb-2 text-center">
+        <img src="https://placehold.co/57x72" alt="">
+        <h1 class="display-8 fw-bold">Faça seu login para realizar seus pedidos!</h1>
+    </div>
 
         <?php 
         #Código de Cadastro do cliente
@@ -63,20 +64,22 @@
         }
     ?>
 
-    <form class="col-6 p-3 mx-auto" method="POST">
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email-input" name="email" placeholder="seuemail@dominio.com.br">
-            <label for="email-input">E-mail</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password-input" name="senha" placeholder="Senha">
-            <label for="password">Senha</label>
-        </div>
-        <div class="d-grid gap-3">
-            <button class="btn btn-link">Esqueci minha senha</button>
-            <button class="btn btn-success btn-lg" type="submit">Entrar</button>
-        </div>
-    </form>
+    <div class="col-md-10 mx-auto col-lg-4">
+        <form class="p-4 p-md-5 rounded-3 form-custom" method="POST">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control form-field-custom" id="email-input" name="email" placeholder="seuemail@dominio.com.br">
+                <label for="email-input" class="form-label-custom">E-mail</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control form-field-custom" id="password-input" name="senha" placeholder="Senha">
+                <label for="password" class="form-label-custom">Senha</label>
+            </div>
+            <div class="d-grid gap-3">
+                <button class="btn btn-link">Esqueci minha senha</button>
+                <button class="btn btn-primary btn-lg" type="submit">Entrar</button>
+            </div>
+        </form>
+    </div>
     <?php /*if($errou_senha == 1){?>
         <div class="alert alert-danger" role="alert">
             Usuário ou senha incorretos
