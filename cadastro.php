@@ -53,7 +53,7 @@
         <input type="hidden" name="id" value="<?php if($edit_id > 0) echo $edit_id?> hidden">
         <div class="mb-3">
             <label for="nome-completo" class="form-label">Nome completo</label>
-            <input type="text" name="nome" class="form-control" id="nome-completo" value="<?php if($edit_id > 0) echo $nome;?>">
+            <input type="text" name="nome" class="form-control" id="nome-completo" required value="<?php if($edit_id > 0) echo $nome;?>">
         </div>
         <div class="row">
             <div class="mb-3 col-lg-6 col-md-12">
@@ -67,7 +67,7 @@
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" id="email" placeholder="seuemail@dominio.com" class="form-control" value="<?php if($edit_id > 0) echo $email;?>">
+            <input type="email" name="email" id="email" placeholder="seuemail@dominio.com" class="form-control" required value="<?php if($edit_id > 0) echo $email;?>">
         </div>
         <div class="mb-3 col-lg-6 col-sm-12">
             <label for="telefone" class="form-label">Telefone</label>
@@ -106,11 +106,11 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" name="senha" id="password" placeholder="Senha" class="form-control" <?php if($edit_id > 0) echo "disabled";?>>
+            <input type="password" name="senha" id="password" placeholder="Senha" class="form-control" required <?php if($edit_id > 0) echo "disabled";?>>
             <div class="form-text">A senha deve ter entre 6-20 caracteres, e incluir caracteres maiúsculos, minúsculos, números e símbolos</div>
         </div>
         <div class="mb-3">
-            <input type="password" name="senha" id="password" placeholder="Confirme sua senha" class="form-control" <?php if($edit_id > 0) echo "disabled";?>>
+            <input type="password" name="senha" id="password" placeholder="Confirme sua senha" class="form-control" required <?php if($edit_id > 0) echo "disabled";?>>
         </div>
         <div class="d-grid gap-3 mt-4">
             <button type="submit" class="btn btn-success btn-lg">

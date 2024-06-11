@@ -53,7 +53,11 @@
             $carrinho = $conn->prepare($sql);
             $carrinho->execute();
     
-            echo $pedido_id['id'];
+            #echo $pedido_id['id'];
+            ?> 
+            <h1>Muito obrigado!</h1>
+            <p>Seu pedido já foi recebido e começaremos a prepará-lo em breve. Manteremos você atualizado por e-mail!</p>
+            <?php
 
         } else {
             #Não existem produtos no carrinho

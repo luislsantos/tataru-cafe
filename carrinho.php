@@ -73,7 +73,7 @@
                 <th>Quantidade</th>
                 <th>Valor Unitário</th>
                 <th>Valor Total</th>
-                <th>Editar/Excluir</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody id="produtos-carrinho">
@@ -84,12 +84,9 @@
                     <td><?php echo $produto['quantidade']?></td>
                     <td>R$ <?php echo number_format($produto['preco_unitario'],2,",")?></td>
                     <td>R$ <?php echo number_format($produto['valor_total'],2,",")?></td>
-                    <th>
-                        <div class="btn-group">
-                            <a class="btn btn-outline-primary btn-sm" href="editar_quantidade_carrinho.php?cod=<?php echo $produto['id'];?>"><i class="bi bi-pencil-square"></i></button>
-                            <a class="btn btn-outline-primary btn-sm" href="excluir_produto_carrinho.php?cod=<?php echo $produto['id']; ?>"><i class="bi bi-trash3"></i></a>
-                        </div>
-                    </th>
+                    <td>
+                        <a class="btn text-danger btn-lg" href="excluir_produto_carrinho.php?cod=<?php echo $produto['id']; ?>"><i class="bi bi-x-circle-fill"></i></a>
+                    </td>
                 </tr>
             <?php 
                 $sub_total += $produto['valor_total'];
@@ -97,10 +94,48 @@
             ?>
         </tbody>
     </table>
-    <h2>Subtotal: R$ <?php echo number_format($sub_total,2,",")?></h2>
+    <h2 class="row mx-auto">Subtotal: R$ <?php echo number_format($sub_total,2,",")?></h2>
     <div class="d-flex justify-content-center m-5">
-        <a href="pedido_finalizado.php" class="btn btn-success mx-3">Fechar o pedido</a>
-        <a class="btn btn-danger mx-3">Limpar o carrinho</a>
+        <a class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#modalFecharPedido">Fechar o pedido</a>
+        <a class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#modalLimparCarrinho">Limpar o carrinho</a> 
+    </div>
+
+    <!-- Modal pra confirmar se quer esvaziar o carrinho, conforme Bootstrap-->
+    <div class="modal fade" id="modalLimparCarrinho" tabindex="-1" aria-labelledby="modalLimparCarrinhoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLimparCarrinhoLabel">Limpar carrinho</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botaoModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja descartar todos os itens do carrinho?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a type="button" class="btn btn-danger" href="excluir_produto_carrinho.php?cod=-1" >Sim, limpar o carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pra confirmar se quer fechar o pedido-->
+    <div class="modal fade" id="modalFecharPedido" tabindex="-1" aria-labelledby="modalFecharPedidoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalFecharPedidoLabel">Limpar carrinho</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botaoModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Você tem certeza que deseja descartar todos os itens do carrinho?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a type="button" class="btn btn-success" href="pedido_finalizado.php" >Fechar o pedido</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

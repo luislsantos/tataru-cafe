@@ -37,7 +37,7 @@
             foreach($lista_pedidos as $pedido) {?>
                 <tr>
                     <td><?php echo $pedido['id'] ?></td>
-                    <td><?php echo $pedido['data'] ?></td>
+                    <td><?php echo date_format(date_create($pedido['data']),"d/m/Y")?></td>
                     <td>R$ <?php echo number_format($pedido['total'],2,",") ?></td>
                     <td>
                         <p class="d-inline-flex gap-1">
@@ -57,6 +57,7 @@
                             $produtos_pedido->execute();
                             $produtos_pedido = $produtos_pedido->fetchAll();
                             ?>
+                            <!--- Tabela que vai contar os detalhes do pedido--->
                                 <table class="table ms-5">
                                     <thead>
                                         <th>Produto</th>
@@ -65,9 +66,10 @@
                                         <th>Total</th>
                                     </thead>
                                     <tbody>
+                                        <!--- Vai iterar por cada um dos itens do pedido e colocar cada um deles nas table rows <tr> da tabela --->
                                         <?php foreach($produtos_pedido as $produto){ ?>
                                             <tr>
-                                                <td><?php echo $produto['nome']?></td>
+                                                <td style="width: 383.672px;"><?php echo $produto['nome']?></td>
                                                 <td>R$ <?php echo number_format($produto['preco_unitario'],2,",")?></td>
                                                 <td><?php echo $produto['quantidade']?></td>
                                                 <td>R$ <?php echo number_format(($produto['preco_unitario']*$produto['quantidade']),2,",")?></td>

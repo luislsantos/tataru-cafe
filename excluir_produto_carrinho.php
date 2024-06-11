@@ -15,10 +15,16 @@
         include_once 'conexao.php';
 
         $delete_cod = $_GET['cod'];
+        #Verificar se o código é -1, o que só pode ocorrer se foi pedido para limpar todo o carrinho
+        if($delete_cod == -1) { #Se for igual a -1
+            $sql = "DELETE FROM produtos_carrinho WHERE cliente_id = '$_SESSION[user_id]'";
+        } else { #Se não for igual a 1
+            $sql = "DELETE FROM produtos_carrinho WHERE id = '$delete_cod'";
+        }
 
-        $sql = "DELETE FROM produtos_carrinho WHERE id = '$delete_cod'";
         $excluir_produto = $conn->prepare($sql);
         $excluir_produto->execute();
+        header("Location: carrinho.php");
     ?>
     <h5>Produto Excluído</h5>
     <p>O produto foi excluído do seu carrinho com sucesso.</p>

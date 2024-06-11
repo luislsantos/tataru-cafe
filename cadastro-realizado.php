@@ -83,12 +83,16 @@
         $novo_cliente = $conn->prepare($sql);
         $novo_cliente->execute();
     }
-?>
 
-    <h1>Cadastro realizado com sucesso!</h1>
-    <p>Agora é só fazer seu login e começar a comprar conosco!</p>
-    <a href="login.php" class="btn btn-link">Clique aqui para realizar seu login</a>
-
+    if($id >= 0) { ?>
+        <h1>Cadastro atualizado com sucesso!</h1>
+        <p>Fique a vontade para continuar suas compras</p>
+        <a href="lista-produtos.php" class="btn btn-link">Clique aqui para ir para o catálogo de produtos</a>
+    <?php } else {?>
+        <h1>Cadastro realizado com sucesso!</h1>
+        <p>Agora é só fazer seu login e começar a comprar conosco!</p>
+        <a href="login.php" class="btn btn-link">Clique aqui para realizar seu login</a>
+    <?php } ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

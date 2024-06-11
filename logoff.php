@@ -22,6 +22,7 @@
         echo "Token deletado do banco";
         setcookie('token_sessao','',time() - 3600);
         $_SESSION['user_id'] = -1;
+        header("Location: index.php");
         header("refresh:0");
     }
 
