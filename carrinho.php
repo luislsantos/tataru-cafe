@@ -33,22 +33,22 @@
         $produto_carrinhoPDO = $conn->prepare($sql);
         $produto_carrinhoPDO->execute();
         $produto_carrinho = $produto_carrinhoPDO->fetch();
-        echo "EXECUTEI";
+        #echo "EXECUTEI";
 
         #Se estiver, aumentar a quantidade
         if(!empty($produto_carrinho)) {
-            echo " ACHEI!";
+            #echo " ACHEI!";
             $id = $produto_carrinho['id'];
             $qtde += $produto_carrinho['quantidade'];
             $valor_total = $qtde * $preco_unitario;
-            echo " QTDE atualizada = " . $qtde;
+            #echo " QTDE atualizada = " . $qtde;
             $sql = "UPDATE produtos_carrinho SET quantidade = $qtde, valor_total = $valor_total WHERE id = $id";
             $produto_carrinhoPDO = $conn->prepare($sql);
             $produto_carrinhoPDO->execute();
 
         #Se não estiver, acrescentar
         } else {
-            echo "NÃO ACHEI";
+            #echo "NÃO ACHEI";
             $valor_total = $qtde * $preco_unitario;
             $sql = "INSERT INTO `produtos_carrinho` (`id`, `cliente_id`, `produto_id`, `quantidade`, `valor_total`) VALUES (NULL, $_SESSION[user_id], $prod_id, $qtde, $valor_total)";
             $produto_carrinhoPDO = $conn->prepare($sql);
@@ -64,46 +64,53 @@
 
     #Variável para o valor total no carrinho
     $sub_total = 0;
+    $quantidade_total = 0;
 
     ?>
-    <table class="table table-striped mb-1">
-        <thead class="table-primary">
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Valor Unitário</th>
-                <th>Valor Total</th>
-                <th>Remover</th>
-            </tr>
-        </thead>
-        <tbody id="produtos-carrinho">
-            <?php
-            foreach($carrinho as $produto){ ?>
+    <div class="container text-center w-75 mt-4 px-4" >
+        <h1 class="row justify-contents-start ps-3 mb-3">Carrinho de Compras</h1>
+        <table class="table table-striped mb-1">
+            <thead class="table-primary border rounded-3">
                 <tr>
-                    <td><?php echo $produto['nome']?></td>
-                    <td><?php echo $produto['quantidade']?></td>
-                    <td>R$ <?php echo number_format($produto['preco_unitario'],2,",")?></td>
-                    <td>R$ <?php echo number_format($produto['valor_total'],2,",")?></td>
-                    <td>
-                        <a class="btn text-danger btn-lg" href="excluir_produto_carrinho.php?cod=<?php echo $produto['id']; ?>"><i class="bi bi-x-circle-fill"></i></a>
-                    </td>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Valor Total</th>
+                    <th>Remover</th>
                 </tr>
-            <?php 
-                $sub_total += $produto['valor_total'];
-            }
-            ?>
-        </tbody>
-    </table>
-    <h2 class="row mx-auto">Subtotal: R$ <?php echo number_format($sub_total,2,",")?></h2>
-    <div class="d-flex justify-content-center m-5">
-        <a class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#modalLimparCarrinho">Limpar o carrinho</a> 
-        <a class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#modalFecharPedido">Fechar o pedido</a>
+            </thead>
+            <tbody id="produtos-carrinho">
+                <?php
+                foreach($carrinho as $produto){ ?>
+                    <tr class="table-row-custom">
+                        <td><?php echo $produto['nome']?></td>
+                        <td><?php echo $produto['quantidade']?></td>
+                        <td>R$ <?php echo number_format($produto['preco_unitario'],2,",")?></td>
+                        <td>R$ <?php echo number_format($produto['valor_total'],2,",")?></td>
+                        <td>
+                            <a class="btn text-danger btn-lg" href="excluir_produto_carrinho.php?cod=<?php echo $produto['id']; ?>"><i class="bi bi-x-circle-fill"></i></a>
+                        </td>
+                    </tr>
+                <?php 
+                    $sub_total += $produto['valor_total'];
+                    $quantidade_total += $produto['quantidade'];
+                }
+                ?>
+            </tbody>
+        </table>
+        <div class="row justify-content-end pt-3 pe-3"></div>
+        <h2 class="row justify-content-end pe-3">Subtotal (<?php echo $quantidade_total?> produtos): R$ <?php echo number_format($sub_total,2,",")?></h2>
+        <div class="d-flex justify-content-center m-3">
+            <a class="btn btn-danger mx-3" data-bs-toggle="modal" data-bs-target="#<?php if($carrinho) {echo "modalLimparCarrinho";} else {echo "modalCarrinhoVazio";}?>">Limpar o carrinho</a> 
+            <a class="btn btn-success mx-3" data-bs-toggle="modal" data-bs-target="#<?php if($carrinho) {echo "modalFecharPedido";} else {echo "modalCarrinhoVazio";}?>">Fechar o pedido</a>
+        </div>
+
     </div>
 
     <!-- Modal do Bootstrap pra confirmar se quer esvaziar o carrinho, conforme Bootstrap-->
     <div class="modal fade" id="modalLimparCarrinho" tabindex="-1" aria-labelledby="modalLimparCarrinhoLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-custom">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalLimparCarrinhoLabel">Limpar carrinho</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botaoModal"></button>
@@ -122,22 +129,42 @@
     <!-- Modal do Bootstrap pra confirmar se quer fechar o pedido-->
     <div class="modal fade" id="modalFecharPedido" tabindex="-1" aria-labelledby="modalFecharPedidoLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-custom">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalFecharPedidoLabel">Limpar carrinho</h1>
+                    <h1 class="modal-title fs-5" id="modalFecharPedidoLabel">Fechar o pedido</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botaoModal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Você tem certeza que deseja descartar todos os itens do carrinho?</p>
+                    <p>Você tem certeza que deseja fechar o seu pedido?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <a type="button" class="btn btn-success" href="pedido_finalizado.php" >Fechar o pedido</a>
+                    <a type="button" class="btn btn-success" href="pedido_finalizado.php" >Sim, fechar o meu pedido</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal do Bootstrap pra dizer que o carrinho está vazio e, portanto, não pode ser executada aquela operação-->
+    <div class="modal fade" id="modalCarrinhoVazio" tabindex="-1" aria-labelledby="modalCarrinhoVazioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-custom">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalCarrinhoVazioLabel">Carrinho vazio</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botaoModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Não é posível fazer isso pois você não tem itens adicionados ao carrinho.</p>
+                    <p>Adicione algum item primeiro e depois tente novamente</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php include 'footer.php';?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
 </body>

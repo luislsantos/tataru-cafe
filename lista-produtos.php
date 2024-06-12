@@ -39,7 +39,7 @@
                                 <div class="row pt-3 align-items-center">
                                     <label class="col-form-label col-sm-2" for="qtde-<?php echo $produto['id'];?>">Qtde:</label>
                                     <div class="col">
-                                        <input type="number" name="quantidade" id="qtde-<?php echo $produto['id'];?>" class="form-control w-50" value="1">
+                                        <input type="number" name="quantidade" id="qtde-<?php echo $produto['id'];?>" class="form-control w-50 form-field-custom" value="1">
                                     </div>
                                     <div class="col">
                                         <?php if(isset($_COOKIE['token_sessao'])) {?>
@@ -57,6 +57,7 @@
             <?php }?>
         </div>
 
+    <?php include 'footer.php';?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

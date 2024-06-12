@@ -26,7 +26,7 @@
         <div class="container text-center w-75 mt-4 px-4" >
 
             <!-- Cabeçalho da lista de pedidos será organizado pelo grid do Bootstrap, para melhor organizar-->
-                    <div class="row pb-3 row-cols-3 border border-3 rounded align-items-center text-bg-dark" >
+                    <div class="row pb-3 row-cols-3 border border-3 rounded align-items-center card-custom" >
                         <div class="col"><strong>Número do Pedido</strong></div>
                         <div class="col"><strong>Data</strong></div>
                         <div class="col pe-5"><strong>Total(R$)</strong></div>
@@ -39,7 +39,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <!-- O data-bs-target e o aria-controls desse botão variam de acordo com o id do pedido. Assim, cada botão apenas abre os detalhes do seu próprio pedido-->
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $pedido['id']?>" aria-expanded="false" aria-controls="collapse-<?php echo $pedido['id']?>">
+                            <button class="accordion-button collapsed accordion-button-custom" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $pedido['id']?>" aria-expanded="false" aria-controls="collapse-<?php echo $pedido['id']?>">
                                 <!-- Dentro do cabeçalho do accordion, serão organizados os itens com o grid do Bootstrap pra espaçar melhor os itens -->
                                 <div class="container text-center">
                                     <div class="row row-col-3">
@@ -53,7 +53,7 @@
                         </h2>
                         <!-- Aqui fica toda a parte "escondida" do accordion. A primeira div demarca o que vai ser escondido (hidden), e a segunda vai conter o conteúdo em sí -->
                         <div id="collapse-<?php echo $pedido['id']?>" class="accordion-collapse collapse" data-bs-parent="#accordion-pedidos">
-                            <div class="accordion-body text-bg-secondary">
+                            <div class="accordion-body accordion-body-custom">
 
                                     <?php    
                                         #Pegar os itens desse pedido
@@ -90,8 +90,7 @@
 
     ?>
 
-
-
+    <?php include 'footer.php';?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

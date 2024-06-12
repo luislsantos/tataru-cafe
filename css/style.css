@@ -1,19 +1,46 @@
 :root{
     --cor-de-fundo: #6F4E37;
+        --cor-de-fundo-escura: #583b26;
+        --cor-de-fundo-clara: #583b26b4;
+
     --cor-secundaria: #A67B5B;
+
     --cor-terciaria: #ECB176;
+        --cor-terciaria-clara: rgba(236, 177, 118, 0.623);
+        --cor-terciaria-clarissima: rgba(236, 177, 118, 0.247);
+
     --cor-da-fonte: #FED8B1;
-    --cor-da-fonte-rgb: rgb(254, 216, 177);
+        --cor-da-fonte-rgb: rgb(254, 216, 177);
+        --cor-da-fonte-clara: rgba(254, 216, 177, 0.712);
+
     --cor-border: #aa8663;
+
+
 
     --cor-btn-bg: #D2649A;
     --cor-btn-bg-hover:#a1386b;
-    --cor-gtn-border: #00000000;
+    --cor-btn-border: #00000000;
     --cor-btn-fonte: #ffffff;
 }
 
 hr {
     border-color: var(--cor-secundaria);
+}
+
+.navbar-hr {
+    border-bottom-width: 5px;
+    margin: 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.border-custom {
+    border-color: var(--cor-secundaria);
+}
+
+.cursiva{
+    font-family: "Gwendolyn", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .body-general {
@@ -28,11 +55,17 @@ hr {
 
 .navbar-content {
     color: var(--cor-da-fonte) !important;
+    --bs-dropdown-link-active-bg: var(--cor-secundaria);
 }
 
 .navbar-dropdown {
     background-color: var(--cor-de-fundo);
     --bs-dropdown-link-hover-bg:var(--cor-secundaria);
+}
+
+#footer-principal {
+    background-color: var(--cor-de-fundo) !important;
+    border-color: var(--cor-da-fonte) !important;
 }
 
 .hero-divider {
@@ -44,10 +77,25 @@ hr {
     box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15)
 }
 
+.form-label {
+    color: var(--cor-de-fundo-escura);
+}
+
+.form-control {
+    background-color: var(--cor-de-fundo);
+    color: var(--cor-da-fonte) !important;
+    border: 1px, solid, var(--cor-border);
+    --bs-body-color:var(--cor-da-fonte);
+    --bs-body-bg:var(--cor-de-fundo);
+    --bs-secondary-color: var(--cor-da-fonte-clara);
+    --bs-secondary-bg: var(--cor-de-fundo-clara)
+}
+
 .form-custom {
     background-color: var(--cor-terciaria);
     border: 1px, solid, var(--cor-border);
 }
+
 
 .form-field-custom {
     background-color: var(--cor-de-fundo);
@@ -64,6 +112,10 @@ hr {
     --bs-highlight-bg:var(--cor-de-fundo);
 }
 
+.floating-item {
+    min-height: 50rem;
+}
+
 .card-custom {
     background-color: var(--cor-terciaria);
     border: 1px, solid, var(--cor-border);
@@ -73,13 +125,53 @@ hr {
     counter-reset: var(--cor-de-fundo);
 }
 
+.modal-custom{
+    background-color: var(--cor-de-fundo);
+    border: 1px, solid, var(--cor-border);
+    color: var(--cor-da-fonte);
+    --bs-modal-header-border-color: var(--cor-border);
+    --bs-modal-footer-border-color: var(--cor-border);
+}
+
+.pedidos-header {
+    background-color: var(--cor-terciaria);
+    border: 1px, solid, var(--cor-border);
+    color: var(--cor-de-fundo);
+}
+
+.accordion-button-custom { /*"Cabeçalho do acordeão. É o lucar onde "clica"*/
+    --bs-accordion-btn-bg: var(--cor-btn-bg); /*Cor de FUNDO*/
+    --bs-accordion-btn-color: var(--cor-btn-fonte); /*Cor da FONTE*/
+    --bs-accordion-active-bg: var(--cor-btn-bg-hover); /*Cor de FUNDO quando ele estiver "ATIVO"*/
+    --bs-accordion-active-color: var(--cor-btn-fonte); /*Cor da FONTE quando ele estiver "ATIVO"*/
+}
+
+.accordion-body-custom {
+    color: black;
+    background-color: pink;
+}
+
+.table-primary {
+    --bs-table-bg: var(--cor-terciaria);
+    --bs-table-color: var(--cor-de-fundo);
+    --bs-table-border-color: var(--cor-border);
+}
+
+.table-row-custom { /*Estilização específica para tabelas da classe table-striped*/
+    --bs-table-striped-bg: var(--cor-terciaria-clara); /*Cor de FUNDO da linha mais escura*/
+    --bs-table-color-type: var(--cor-de-fundo);/*Cor da FONTE da linha mais escura*/
+
+    --bs-table-bg-type: var(--cor-terciaria-clarissima); /*Cor de FUNDO da linha mais clara*/
+    --bs-table-striped-color: var(--cor-de-fundo);/*Cor da FONTE da linha mais clara*/
+}
+
 .btn-primary {
     background-color: var(--cor-btn-bg);
-    border-color: var(--cor-gtn-border);
+    border-color: var(--cor-btn-border);
     color: var(--cor-btn-fonte);
     --bs-btn-hover-color: var(--cor-btn-fonte);
     --bs-btn-hover-bg: var(--cor-btn-bg-hover);
-    --bs-btn-hover-border-color: var(--cor-gtn-border);
+    --bs-btn-hover-border-color: var(--cor-btn-border);
 
 }
 

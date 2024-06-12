@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -13,12 +16,12 @@
     <?php if (!isset($_SESSION)) session_start() ?>
 
     <!-- Começo da Navbar -->
-    <nav class="navbar navbar-expand-sm" id="navbar-principal">
+    <nav class="navbar sticky-top navbar-expand-md border-bottom" id="navbar-principal">
         <div class="container-fluid">
 
             <!--Logo -->
-            <a class="navbar-brand col-2 navbar-content ps-5" href="index.php">
-                Deisy Trufas
+            <a class="navbar-brand col-2 navbar-content ps-5 cursiva" href="index.php" style="font-size: xx-large;">
+                Tataru Trufas
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -65,7 +68,7 @@
                                 Olá <?php echo $_SESSION['user_name'] ?> <!-- Mostra o nome do usuário -->
                             </a>
                             <ul class="dropdown-menu col-sm-auto navbar-dropdown"> <!-- Menu com opções, que abre quando clica non nome do usuário -->
-                                <li><a class="dropdown-item navbar-content" href="lista-pedidos.php">Ver pedidos</a></li>
+                                <li><a class="dropdown-item navbar-content" href="lista-pedidos.php">Meus pedidos</a></li>
                                 <li><a class="dropdown-item navbar-content" href="cadastro.php">Editar Cadastro</a></li>
                                 <li>
                                     <hr class="dropdown-divider">

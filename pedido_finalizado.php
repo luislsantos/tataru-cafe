@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="body-general">
     <?php
         session_start();
         include 'navbar.php';
@@ -54,17 +54,23 @@
             $carrinho->execute();
     
             #echo $pedido_id['id'];
-            ?> 
-            <h1>Muito obrigado!</h1>
-            <p>Seu pedido já foi recebido e começaremos a prepará-lo em breve. Manteremos você atualizado por e-mail!</p>
+            ?>
+            <div class="container px-5 pt-2 my-5 text-center">
+                <h1 class="row display-4 fw-bold mb-2 justify-content-center">Muito obrigado!</h1>
+                <p class="row mt-5 lead justify-content-center">Seu pedido já foi recebido e começaremos a prepará-lo em breve. Manteremos você atualizado por e-mail!</p>
+                <div class="row mt-5 justify-content-center">
+                    <a class=" col-6 btn btn-primary" href="index.php">Voltar para a página principal</a>
+                </div>
+
+            </div>
             <?php
 
-        } else {
+        } /*else {
             #Não existem produtos no carrinho
             echo "O seu carrinho está vazio!";
         }
         
-    ?>
+    */?>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

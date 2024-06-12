@@ -39,7 +39,7 @@
     ?>
 
 
-    <h1 class="p-3 col-9 mx-auto text-center">
+    <h1 class="p-3 mb-4 col-9 mx-auto text-center">
         <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
             $edit_id = $_SESSION['user_id'];
             $sql = "SELECT * FROM clientes WHERE id = $_SESSION[user_id]";
@@ -67,14 +67,23 @@
             $edit_id = -1;
             echo "Faça seu cadastro conosco e já começe a enviar seus pedidos";
 
-        }?>
+        }
+        
+        #Código de Cadastro do cliente
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nome_index = $_POST['nome'];
+            $email_index = $_POST['email'];
+        }
+        ?>
     </h1>
 
-    <form action="cadastro-realizado.php" method="POST" class="col-lg-6 col-sm-12 p-3 mx-auto">
+    <div></div>
+
+    <form action="cadastro-realizado.php" method="POST" class="col-lg-6 col-sm-12 p-3 mx-auto rounded-3 form-custom" id="form-cadastro">
         <input type="hidden" name="id" value="<?php if($edit_id > 0) echo $edit_id?> hidden">
         <div class="mb-3">
             <label for="nome-completo" class="form-label">Nome completo</label>
-            <input type="text" name="nome" class="form-control" id="nome-completo" required value="<?php if($edit_id > 0) echo $nome;?>">
+            <input type="text" name="nome" class="form-control form-field-custom" id="nome-completo" required value="<?php if(isset($nome_index)) echo $nome_index; if($edit_id > 0) echo $nome;?>">
         </div>
         <div class="row">
             <div class="mb-3 col-lg-6 col-md-12">
@@ -88,7 +97,11 @@
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" id="email" placeholder="seuemail@dominio.com" class="form-control" required value="<?php if($edit_id > 0) echo $email;?>">
+            <input type="email" name="email" id="email" placeholder="seuemail@dominio.com" class="form-control" required value="
+            <?php 
+            if (isset($nome_index)) echo $email_index;
+            if($edit_id > 0) echo $email;
+            ?>">
         </div>
         <div class="mb-3 col-lg-6 col-sm-12">
             <label for="telefone" class="form-label">Telefone</label>
@@ -125,13 +138,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- Senha -->
         <div class="mb-3">
-            <label for="password" class="form-label">Senha</label>
-            <input type="password" name="senha" id="password" placeholder="Senha" class="form-control" required <?php if($edit_id > 0) echo "disabled";?>>
-            <div class="form-text">A senha deve ter entre 6-20 caracteres, e incluir caracteres maiúsculos, minúsculos, números e símbolos</div>
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Senha" class="form-control" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{3,16}$" <?php if($edit_id > 0) echo "disabled";?>>
+            <div class="form-text">A senha deve ter entre 3-16 caracteres, e incluir caracteres maiúsculos, números e símbolos</div>
         </div>
         <div class="mb-3">
-            <input type="password" name="senha" id="password" placeholder="Confirme sua senha" class="form-control" required <?php if($edit_id > 0) echo "disabled";?>>
+            <input type="password" name="confirma-senha" id="confirma-senha" placeholder="Confirme sua senha" class="form-control" required <?php if($edit_id > 0) echo "disabled";?>>
         </div>
         <div class="d-grid gap-3 mt-4">
             <button type="submit" class="btn btn-success btn-lg">
@@ -144,6 +159,7 @@
         </div>
     </form>
 
+    <?php include 'footer.php';?>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

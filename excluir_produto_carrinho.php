@@ -11,7 +11,6 @@
 <body>
     <?php 
         session_start();
-        include 'navbar.php';
         include_once 'conexao.php';
 
         $delete_cod = $_GET['cod'];
