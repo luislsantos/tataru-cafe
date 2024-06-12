@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deisy Trufas</title>
+    <title>Tataru Café</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -40,10 +40,11 @@
 
     <!-- Primeiro Hero, apenas com a chamada principal e um botão -->
     <div class="px-4 py-5 my-5 text-center">
-        <img src="https://placehold.co/57x72" alt="">
-        <h1 class="display-5 fw-bold cursiva">Tataru Taru<br>Trufas Artesanais</h1>
+        <img src="img/pena_logo.svg" alt="" height="72">
+        <h1 class="display-5 fw-bold">Tataru Café</h1>
+        <h2 class="display-6 fw-bold cursiva">Tataru Taru</h2>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet condimentum turpis, at scelerisque augue. Phasellus a finibus augue. Mauris tincidunt, eros vel tempus mattis, felis arcu placerat diam, posuere imperdiet enim enim eget purus. Duis gravida, magna ut feugiat euismod, nisi ante molestie tellus, nec accumsan urna orci sed tellus.</p>
+            <p class="lead mb-4">Durante seus anos de dedicação enquanto tesoureira e secretária da organização mais importante de Eorzea, a mestre Tataru Taru se encantou com a diversidade culinária que podia ser encontrada ao redor de Etheirys. Assim, a fim de assegurar que todos também possam ter esta experiência, ela se juntou às mentes culinárias mais brilhantes do mundo para, sob o mesmo teto, reunir todas as escolas gastronômicas existentes.
         </div>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <a href="lista-produtos.php" class="btn btn-primary btn-lg px-4 gap-3">Conheça nosso catálogo</a>
@@ -55,13 +56,13 @@
 
     <!-- Segundo Hero, com imagem centralizada -->
     <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">Imagem fazendo doce</h1>
+        <h1 class="display-4 fw-bold col-7 mx-auto">Produtos feitos pelos melhores artesãos de Eorzea, Othard e Radz-at-Han</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Aenean tempus aliquam elementum. Donec fringilla, nibh ac accumsan pulvinar, sapien orci luctus eros, eu tempus augue mauris at lectus. Donec tempor vitae tellus non varius. Proin commodo neque eget urna tristique, ut porta magna elementum. Aliquam erat volutpat. Nulla dapibus elit feugiat ex sodales, at hendrerit lacus scelerisque. Nam varius dictum finibus. Nulla sem eros, dignissim vitae feugiat eu, pellentesque vel tortor. In ullamcorper augue in ultrices varius. Cras interdum ex vel leo ultricies tempor.</p>
+            <p class="lead mb-4">No Tataru Cafe, cada produto é uma obra-prima criada com paixão e habilidade pelos melhores artesãos de Etheirys. Desde os bolos delicadamente decorados até os pães recém-assados, tudo é preparado com os ingredientes mais frescos e de alta qualidade. Nossa equipe de cozinheiros talentosos e dedicados garante que cada mordida seja uma experiência única e deliciosa, trazendo o melhor da culinária para você. Venha saborear a autenticidade e o carinho que colocamos em cada prato.</p>
         </div>
         <div class="overflow-hidden" style="max-height: 30vh;">
             <div class="container px-5">
-                <img src="https://placehold.co/500x700" class="img-fluid border rounded-3 shadow-lg mb-4" alt="">
+                <img src="img/culinarian.png" class="img-fluid rounded-3 mb-4" alt="" width="500">
             </div>
         </div>
     </div>
@@ -73,11 +74,11 @@
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="container col-10 col-sm-8 col-lg-6">
-                <img src="https://placehold.co/500x700" alt="" class="img-fluid">
+                <img src="img/lugares.png" alt="" class="img-fluid rounded-3">
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Imagem do cardápio</h1>
-                <p class="lead">Vestibulum venenatis pretium dui vel consequat. Suspendisse placerat vestibulum nulla vitae tristique. Cras elementum, eros at elementum finibus, augue nisi pulvinar sapien, at egestas elit lacus eu ex. Vivamus id faucibus enim. Vestibulum vulputate fringilla dui, ac scelerisque quam dictum pharetra. Morbi eu felis sit amet massa condimentum lacinia non lacinia risus. Mauris dapibus turpis augue, at aliquam mauris luctus vel.</p>
+                <h1 class="display-5 fw-bold lh-1 mb-3">Atendemos a todas as localizações</h1>
+                <p class="lead">De Ul'dah a Ultima Thule, seja na Fonte ou em qualquer das 13 reflexões, há sempre um representante próximo à você. Garantimos sua entrega no prazo de 24h e você só paga ao receber, direto com o entregador.</p>
             </div>
         </div>
     </div>
@@ -89,8 +90,8 @@
     <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="row align-itens-center g-lg-5 py-5">
             <div class="col-lg-7 text-center text-lg-start">
-                <h1 class="display-4 fw-bold mb-3">Registre-se e receba nossos produtos em qualquer lugar</h1>
-                <p class="col-lg-10 fs-4">De Ul'dah a Ultima Thule, seja na Fonte ou em qualquer das 14 reflexões, há sempre um representante próximo à você. Basta fazer seu registro conosco e nos garantimos sua entrega!</p>
+                <h1 class="display-4 fw-bold mb-3">Registre-se agora e faça seu pedido</h1>
+                <p class="col-lg-10 fs-4"> O que está esperando? Faça agora mesmo seu cadastro. É rápido e fácil!</p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
                 <form action="cadastro.php" method="POST" class="p-4 p-md-5 rounded-3 form-custom">
@@ -104,7 +105,7 @@
                     </div>
                     <button type="submit" class="w-100 btn btn-lg btn-primary">Cadastrar</button>
                     <hr class="my-4">
-                    <small class="text-body-secondary">Para podermos enviar nossso doces até você, iremos solicitar mais algumas informações a seguir</small>
+                    <small class="text-body-secondary">Para podermos chegar até você, iremos solicitar mais algumas informações a seguir</small>
                 </form>
             </div>
         </div>

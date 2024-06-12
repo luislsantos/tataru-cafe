@@ -32,21 +32,19 @@
             <div class="col-md-4 d-flex align-items-center">
                 <!-- Logo da empresa, que será um link e também um ícone -->
                 <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
+                    <img src="img/pena_logo.svg" alt="" height="30">
                 </a>
                 <span class="mb-3 mb-md-0 body-general">&copy; 2024 Tataru Taru</span>
             </div>
 
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi footer-logo" width="24" height="24">
                             <use xlink:href="#twitter" />
                         </svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi footer-logo" width="24" height="24">
                             <use xlink:href="#instagram" />
                         </svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi footer-logo" width="24" height="24">
                             <use xlink:href="#facebook" />
                         </svg></a></li>
             </ul>

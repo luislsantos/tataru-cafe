@@ -16,10 +16,10 @@
         include 'navbar.php';
         include_once 'conexao.php';
     ?>
-    <div class="row align-items-center">
+    <div class="row align-items-center mb-5">
         <div class="col-md-12 col-lg-6">
-            <div class="px-4 py-5 mt-4 mb-2 text-center">
-                <img src="https://placehold.co/57x72" alt="">
+            <div class="px-4 py-5 mt-4 mb-2 mx-auto col-lg-7 text-center">
+                <!-- <img src="https://placehold.co/57x72" alt=""> -->
                 <h1 class="display-8 fw-bold">Faça seu login para realizar seus pedidos!</h1>
             </div>
         
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="col-md-7 col-lg-6 mt-3">
-            <img src="https://placehold.co/600x600" alt="" class=" img-fluid mt-5 border rounded-3">
+            <img src="img/food1.png" alt="" class="img-fluid mt-5 rounded-3" width="600">
         </div>
 
     </div>

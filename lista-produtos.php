@@ -29,7 +29,7 @@
             <form action="carrinho.php?prodId=<?php echo $produto['id'];?>" method="POST">
                 <div class="col">
                     <div class="card card-custom m-5 p-3">
-                        <img src="<?php echo $produto['imagem'];?>" class="card-img-top" alt="...">
+                        <img src="<?php echo $produto['imagem'];?>" class="card-img-top" alt="..." height="400">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $produto['nome'];?></h5>
                             <p class="card-text"><?php echo $produto['descricao'];?></p>
@@ -39,7 +39,7 @@
                                 <div class="row pt-3 align-items-center">
                                     <label class="col-form-label col-sm-2" for="qtde-<?php echo $produto['id'];?>">Qtde:</label>
                                     <div class="col">
-                                        <input type="number" name="quantidade" id="qtde-<?php echo $produto['id'];?>" class="form-control w-50 form-field-custom" value="1">
+                                        <input type="number" name="quantidade" id="qtde-<?php echo $produto['id'];?>" class="form-control w-50 form-field-custom" value="1" min="1">
                                     </div>
                                     <div class="col">
                                         <?php if(isset($_COOKIE['token_sessao'])) {?>

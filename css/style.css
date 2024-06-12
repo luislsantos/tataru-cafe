@@ -7,6 +7,7 @@
 
     --cor-terciaria: #ECB176;
         --cor-terciaria-clara: rgba(236, 177, 118, 0.623);
+            --cor-terciaria-clara-escura: rgba(236, 177, 118, 0.767);
         --cor-terciaria-clarissima: rgba(236, 177, 118, 0.247);
 
     --cor-da-fonte: #FED8B1;
@@ -66,6 +67,10 @@ hr {
 #footer-principal {
     background-color: var(--cor-de-fundo) !important;
     border-color: var(--cor-da-fonte) !important;
+}
+
+.footer-logo {
+    filter: invert(99%) sepia(25%) saturate(6860%) hue-rotate(296deg) brightness(117%) contrast(106%);
 }
 
 .hero-divider {
@@ -140,15 +145,15 @@ hr {
 }
 
 .accordion-button-custom { /*"Cabeçalho do acordeão. É o lucar onde "clica"*/
-    --bs-accordion-btn-bg: var(--cor-btn-bg); /*Cor de FUNDO*/
-    --bs-accordion-btn-color: var(--cor-btn-fonte); /*Cor da FONTE*/
-    --bs-accordion-active-bg: var(--cor-btn-bg-hover); /*Cor de FUNDO quando ele estiver "ATIVO"*/
-    --bs-accordion-active-color: var(--cor-btn-fonte); /*Cor da FONTE quando ele estiver "ATIVO"*/
+    --bs-accordion-btn-bg: var(--cor-terciaria-clara); /*Cor de FUNDO*/
+    --bs-accordion-btn-color: var(--cor-de-fundo); /*Cor da FONTE*/
+    --bs-accordion-active-bg: var(--cor-terciaria-clara-escura); /*Cor de FUNDO quando ele estiver "ATIVO"*/
+    --bs-accordion-active-color: var(--cor-de-fundo); /*Cor da FONTE quando ele estiver "ATIVO"*/
 }
 
 .accordion-body-custom {
     color: black;
-    background-color: pink;
+    background-color: var(--cor-terciaria-clarissima);
 }
 
 .table-primary {
