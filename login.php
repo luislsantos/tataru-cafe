@@ -15,15 +15,7 @@
         session_start();
         include 'navbar.php';
         include_once 'conexao.php';
-    ?>
-    <div class="row align-items-center mb-5">
-        <div class="col-md-12 col-lg-6">
-            <div class="px-4 py-5 mt-4 mb-2 mx-auto col-lg-7 text-center">
-                <!-- <img src="https://placehold.co/57x72" alt=""> -->
-                <h1 class="display-8 fw-bold">Faça seu login para realizar seus pedidos!</h1>
-            </div>
-        
-                <?php 
+
                 #Código de Cadastro do cliente
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $email = $_POST['email'];
@@ -38,17 +30,17 @@
                     if(!empty($cliente_login)) {
                     #Verifica se a senha confere
                         if(password_verify($senha,$cliente_login['senha'])){ #A senha confere
-        
+                            
                             #Criar um token a partir de um HEX aleatório
                             $token_sessao = bin2hex(random_bytes(32));
-        
+                            
                             #Inserir o token no Banco
                             $sql = "INSERT INTO sessoes (id, cliente_id, token, data_criacao) VALUES (NULL, '$cliente_login[id]','$token_sessao',NOW())";
                             $registrar_token = $conn->prepare($sql);
                             $registrar_token->execute();
-        
+                            
                             #Armazenar o token de sessão como um cookie
-                            setcookie('token_sessao',$token_sessao, time() + 3600, 'deisy-trufas');
+                            setcookie('token_sessao',$token_sessao, time() + 3600, 'tataru-cafe');
                             $_SESSION['user_id'] = $cliente_login['id'];
                             $_SESSION['user_name'] = $cliente_login['nome'];
                             #echo 'Usuário logado';
@@ -70,6 +62,13 @@
                     }
                 }
             ?>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-12 col-lg-6">
+            <div class="px-4 py-5 mt-4 mb-2 mx-auto col-lg-7 text-center">
+                <!-- <img src="https://placehold.co/57x72" alt=""> -->
+                <h1 class="display-8 fw-bold">Faça seu login para realizar seus pedidos!</h1>
+            </div>
         
             <div class="col-md-10 mx-auto col-lg-7">
                 <form class="p-4 p-md-5 rounded-3 form-custom" method="POST">
