@@ -22,6 +22,11 @@
     --cor-btn-bg-hover:#a1386b;
     --cor-btn-border: #00000000;
     --cor-btn-fonte: #ffffff;
+
+    --cor-btn-danger-bg:#e71717d9;
+    --cor-btn-danger-hover-bg:#e717178f;
+    --cor-btn-danger-fonte: #ff5704b9;
+    --cor-btn-danger-border: #ff5704b9;
 }
 
 hr {
@@ -178,6 +183,50 @@ hr {
     --bs-btn-hover-bg: var(--cor-btn-bg-hover);
     --bs-btn-hover-border-color: var(--cor-btn-border);
 
+}
+
+.btn-success {
+    
+    --bs-btn-bg: var(--cor-btn-bg); /*Cor de fundo normal*/
+    --bs-btn-hover-bg: var(--cor-btn-bg-hover);/*Cor de fundo com mouse em cima*/
+    --bs-btn-active-bg: var(--cor-btn-bg-hover);/*Cor de fundo com o mouse clicado*/
+
+    --bs-btn-color: var(--cor-btn-fonte); /*Cor da fonte normal*/
+    --bs-btn-hover-color: var(--cor-btn-fonte); /*Cor da fonte com mouse em cima*/
+    --bs-btn-active-color: var(--cor-btn-fonte); /*Cor da fonte com moue clicando*/
+
+    --bs-btn-border-color: var(--cor-btn-border); /*Cor da borda normal*/
+    --bs-btn-hover-border-color:  var(--cor-btn-border); /*Cor da borda com mouse em cima*/
+    --bs-btn-active-border-color:  var(--cor-btn-border); /*Cor da borda com mouse clicando*/
+    
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--cor-btn-danger-bg); /*Cor de fundo normal*/
+    --bs-btn-hover-bg: var(--cor-btn-danger-hover-bg);/*Cor de fundo com mouse em cima*/
+    --bs-btn-active-bg: var(--cor-btn-danger-hover-bg);/*Cor de fundo com o mouse clicado*/
+
+    --bs-btn-color: var(--cor-btn-fonte); /*Cor da fonte normal*/
+    --bs-btn-hover-color: var(--cor-btn-fonte); /*Cor da fonte com mouse em cima*/
+    --bs-btn-active-color: var(--cor-btn-fonte); /*Cor da fonte com moue clicando*/
+
+    --bs-btn-border-color: #ffffff00; /*Cor da borda normal*/
+    --bs-btn-hover-border-color: #ffffff00; /*Cor da borda com mouse em cima*/
+    --bs-btn-active-border-color: #ffffff00; /*Cor da borda com mouse clicando*/
+}
+
+.btn-secondary{
+    --bs-btn-bg: ; /*Cor de fundo normal*/
+    --bs-btn-hover-bg: ;/*Cor de fundo com mouse em cima*/
+    --bs-btn-active-bg: ;/*Cor de fundo com o mouse clicado*/
+
+    --bs-btn-color: ; /*Cor da fonte normal*/
+    --bs-btn-hover-color: ; /*Cor da fonte com mouse em cima*/
+    --bs-btn-active-color: ; /*Cor da fonte com moue clicando*/
+
+    --bs-btn-border-color: ; /*Cor da borda normal*/
+    --bs-btn-hover-border-color: ; /*Cor da borda com mouse em cima*/
+    --bs-btn-active-border-color: ; /*Cor da borda com mouse clicando*/
 }
 
 .card-img-height-set {
